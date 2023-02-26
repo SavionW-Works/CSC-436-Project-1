@@ -1,4 +1,20 @@
+import { useEffect, useState } from 'react' 
+import Rates from './Rates';
 const NavBar = () => {
+    
+     
+
+    const [tab, setCurrentTab] = useState(""); 
+    
+    const ShowRates = () => {
+        setCurrentTab("Current Rates")
+    } 
+
+    const ShowConversions = () => {
+        setCurrentTab("Conversions")
+    }
+    
+    
     return <>
         <section className="sticky-top">
 
@@ -26,12 +42,13 @@ const NavBar = () => {
                         {/* <!-- Actual navbar text --> */}
                         <ul className="navbar-nav ms-auto ps-5">
 
+                            
                             <li className="nav-item fs-2">
-                                <a href="" className="nav-link">Link</a>
+                                <button onClick={ShowRates} className="nav-link">Current Rates</button>
                             </li>
 
                             <li className="nav-item fs-2">
-                                <a href="" className="nav-link">Link</a>
+                            <button onClick={ShowConversions} className="nav-link">Conversions</button>
                             </li>
 
                             <li className="nav-item fs-2">
@@ -42,8 +59,15 @@ const NavBar = () => {
                     </div>
                 </div>
 
-            </nav>
-        </section> {/** End of Navbar Section*/}
+            </nav> 
+            <p> {tab} </p>
+        </section> {/** End of Navbar Section*/} 
+
+        <div> 
+        
+        {tab=="Current Rates" && <Rates></Rates>}
+        
+        </div>
 
     </>
 }

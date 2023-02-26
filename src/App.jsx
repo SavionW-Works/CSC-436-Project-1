@@ -8,11 +8,14 @@ import './App.css';
 function App() {
   const [count, setCount] = useState(0)
 
+  
   return (
     <>
       <body>
-        <NavBar></NavBar> 
-        <Rates></Rates>
+        <NavBar></NavBar>  
+
+        {/* Have rates only appear if a boolea/string for the component is true (simulate different htmls without messing with react) */}
+        
       </body> {/* End of Body */}
 
 
