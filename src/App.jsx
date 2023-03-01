@@ -11,8 +11,13 @@ function App() {
   
   return (
     <>
-      <body>
-        <NavBar></NavBar>  
+      <body> 
+        <div className="container">
+          <div className="col">
+            <NavBar></NavBar> 
+          </div>
+        </div>
+         
 
         {/* Have rates only appear if a boolea/string for the component is true (simulate different htmls without messing with react) */}
         

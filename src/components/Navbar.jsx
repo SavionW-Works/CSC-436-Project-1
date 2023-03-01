@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react' 
-import Rates from './Rates';
+import Rates from './Rates'; 
+import Conversions from './Conversions';
 const NavBar = () => {
     
      
@@ -16,13 +17,13 @@ const NavBar = () => {
     
     
     return <>
-        <section className="sticky-top">
+        <section className="sticky-top container">
 
             {/* <!-- Makes a navbar (at lg sizes and above)   --> */}
-            <nav className="navbar navbar-expand-lg navbar text-dark py-3">
+            <nav className="navbar navbar-static-top navbar-expand-lg navbar text-dark py-3">
 
                 {/* <!-- Keeping the navbar in a container helps with padding --> */}
-                <div className="container">
+                <div className="container-fluid">
                     <h2>
                         <a href="" className="navbar-brand display-1 fs-1">Crypto Conversion</a>
                     </h2>
@@ -63,9 +64,13 @@ const NavBar = () => {
             <p> {tab} </p>
         </section> {/** End of Navbar Section*/} 
 
-        <div> 
+        <div className='container justify-content-center'> 
         
-        {tab=="Current Rates" && <Rates></Rates>}
+            {tab=="Current Rates" && <Rates></Rates>}  
+
+            {tab=="Conversions" && <Conversions></Conversions>} 
+
+            {/* Make Conversions component */}
         
         </div>
 
