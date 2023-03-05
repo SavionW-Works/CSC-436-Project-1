@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react' 
 import Rates from './Rates'; 
 import Conversions from './Conversions';
-const NavBar = () => {
+const NavBar = ({rates}) => {
     
      
 
@@ -66,9 +66,9 @@ const NavBar = () => {
 
         <div className='container justify-content-center'> 
         
-            {tab=="Current Rates" && <Rates></Rates>}  
+            {tab=="Current Rates" && <Rates rates={rates}></Rates>}  
 
-            {tab=="Conversions" && <Conversions></Conversions>} 
+            {tab=="Conversions" && <Conversions rates2={rates}></Conversions>} 
 
             {/* Make Conversions component */}
         
