@@ -44,17 +44,14 @@ const NavBar = ({rates}) => {
                         <ul className="navbar-nav ms-auto ps-5">
 
                             
-                            <li className="nav-item fs-2">
+                            <li className="nav-item fs-2 px-3">
                                 <button onClick={ShowRates} className="nav-link">Current Rates</button>
                             </li>
 
-                            <li className="nav-item fs-2">
-                            <button onClick={ShowConversions} className="nav-link">Conversions</button>
+                            <li className="nav-item fs-2 px-3">
+                                <button onClick={ShowConversions} className="nav-link">Conversions</button>
                             </li>
 
-                            <li className="nav-item fs-2">
-                                <a href="" className="nav-link">Link</a>
-                            </li>
                         </ul>
 
                     </div>

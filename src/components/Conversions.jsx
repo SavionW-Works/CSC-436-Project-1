@@ -1,34 +1,34 @@
 import axios from "axios";
 import { useEffect, useState } from 'react'
 
-const Conversions = ({rates2}) => { //Given slightly different name to avoid major refactoring (again)
-    const [rates, setRates] = useState(rates2); 
+const Conversions = ({ rates2 }) => { //Given slightly different name to avoid major refactoring (again)
+    const [rates, setRates] = useState(rates2);
 
     const [toggleExchange, setToggleExchange] = useState(false);
 
     const [sortType, setSortType] = useState("Ascending");  //The search value given by users  
 
-    const [selectedCurrency, setSelectedCurrency] = useState(""); 
+    const [selectedCurrency, setSelectedCurrency] = useState("");
 
-    const [selectedQuantity, setSelectedQuantity] = useState(0);  
+    const [selectedQuantity, setSelectedQuantity] = useState(0);
 
 
-    const currencyHandler = (e) => {  
+    const currencyHandler = (e) => {
         setSelectedCurrency(e.target.value);
-              
-        console.log(e.target.value) 
-    } 
+
+        console.log(e.target.value)
+    }
 
     const quantityHandler = (e) => {
         setSelectedQuantity(e.target.value);
-    } 
+    }
 
     const showExchange = () => {
-        setToggleExchange(true); 
+        setToggleExchange(true);
         console.log(selectedQuantity)
     }
 
-    
+
 
     // const fetchAPIData = async () => {
 
@@ -113,9 +113,12 @@ const Conversions = ({rates2}) => { //Given slightly different name to avoid maj
                         }</tbody>
                     </table>
 
-                    <button onClick={sortHandler} className="relative py-2 font-bold btn btn-primary rounded group">
-                        <span className="relative">Sort ({sortType})</span>
-                    </button>
+                    <div className="py-3">
+                        <button onClick={sortHandler} className="relative py-2 font-bold btn btn-primary rounded group">
+                            <span className="relative">Sort ({sortType})</span>
+                        </button>
+                    </div>
+
                 </div>
             </div>
 
@@ -126,20 +129,23 @@ const Conversions = ({rates2}) => { //Given slightly different name to avoid maj
 
                 <div className="col align-items-center justify-content-center">
                     <label for="Currency Dropdown" className="px-3"> Currency: </label>
-                    
+
                     <select name="Currency Dropdown" onChange={currencyHandler} id="Currency Dropdown" >
                         {Object.keys(rates).map((curr) => {
-                            return <option value={curr} default="Currency">{curr}</option> 
+                            return <option value={curr} default="Currency">{curr}</option>
                         })}
-                    </select> 
+                    </select>
 
                     <label for="quantity" className="px-3">Quantity:</label>
-                    <input type="number" onChange={quantityHandler} value={selectedQuantity} name="quantity" min="1"></input> 
+                    <input type="number" onChange={quantityHandler} value={selectedQuantity} name="quantity" min="1"></input>
+
 
                     <button onClick={showExchange} className="relative py-2 font-bold btn btn-primary rounded group">
                         <span className="relative"> Exchange </span>
-                    </button> 
-                   
+                    </button>
+
+
+
                     {toggleExchange && <p> {rates[selectedCurrency] * selectedQuantity} BTC </p>}
                 </div>
 

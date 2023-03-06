@@ -20,7 +20,7 @@ import Timestamp from './components/Timestamp';
 function App() {
   const [rates, setRates] = useState({});
   const [times, setTimes] = useState({}); //Entire time object   
-  const [allowRefetch, setAllowRefetch] = useState(true); 
+  const [allowRefetch, setAllowRefetch] = useState(true);
   const [refetchTimer, setRefetchTimer] = useState()
 
 
@@ -40,20 +40,37 @@ function App() {
     }, {}); //Retrieves available keys for each bpi
 
     //Component Exclusive Data Asissgnment
-    setRates(bpiData); 
+    setRates(bpiData);
     setTimes(data[time]); //Stores entire time object into timestamp 
   }
 
   //When the page initially mounts
   useEffect(() => {
-    fetchAPIData(); 
-    
-  }, []); 
+
+    fetchAPIData();
+    window.addEventListener("beforeunload", alert);
+    return () => {
+      window.removeEventListener("beforeunload", alert);
+    };
+
+  }, []);
+
+
+  const alert = (e) => { 
+    if (allowRefetch == false) {
+      e.preventDefault();
+      e.returnValue = 'Please do Not Refresh the page';
+    }
+      
+  };
+
+
 
   const reFetch = () => {
-      fetchAPIData();  
-      setAllowRefetch(false);
-      setRefetchTimer(setTimeout(() => {setAllowRefetch(true)}, 3000))  //5 minutes = 300000 ; 3 seconds = 3000
+    fetchAPIData();
+    setAllowRefetch(false); 
+    setRefetchTimer(setTimeout(() => { setAllowRefetch(true) }, 3000))  //5 minutes = 300000 ; 3 seconds = 3000 
+    
   }
 
 
@@ -73,20 +90,20 @@ function App() {
 
       <Timestamp></Timestamp>
 
-      {/* fetchAPIData() still refreshes <Timestamp> for some reason, but only local timestamp is updated...?*/} 
-      {allowRefetch && 
-      
-      <button onClick={()=>reFetch()} className="relative py-2 font-bold btn btn-primary rounded group">
-        <span className="relative"> Re-Fetch </span>
-      </button> 
-      } 
-      
+      {/* fetchAPIData() still refreshes <Timestamp> for some reason, but only local timestamp is updated...?*/}
+      {allowRefetch &&
+
+        <button onClick={() => reFetch()} className="relative py-2 font-bold btn btn-primary rounded group">
+          <span className="relative"> Re-Fetch </span>
+        </button>
+      }
+
       {/* Pending ReFetch */}
-      {!allowRefetch && 
-      
-      <button className="relative py-2 font-bold btn btn-dark rounded group">
-        <span className="relative"> Pending... </span>
-      </button> }
+      {!allowRefetch &&
+
+        <button className="relative py-2 font-bold btn btn-dark rounded group">
+          <span className="relative"> Pending... </span>
+        </button>}
     </>
   )
 }

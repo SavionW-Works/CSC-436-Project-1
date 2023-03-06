@@ -9,29 +9,29 @@ const Rates = ({rates}) => {
     const [direction, setDirection] = useState(""); //Forward and Back?
  
     
-    // const fetchAPIData = async () => {
+    const fetchAPIData = async () => {
         
-    //     const URL = 'https://api.coindesk.com/v1/bpi/currentprice.json';
-    //     const {data:{bpi}} = await axios.get(URL); //Returns API promise  
+        const URL = 'https://api.coindesk.com/v1/bpi/currentprice.json';
+        const {data:{bpi}} = await axios.get(URL); //Returns API promise  
         
-    //     //Creates an array of bpi rates by reducing each bpi key to its rate_float
-    //     const bpiData = Object.keys(bpi).reduce((accum, currentCode) => {
+        //Creates an array of bpi rates by reducing each bpi key to its rate_float
+        const bpiData = Object.keys(bpi).reduce((accum, currentCode) => {
          
-    //         //accum becomes an array where each index corresponds to a bpi key, and each value is a rate 
-    //         //currentCode is the curreny key from bpi (USB, GBP or EUR)
-    //         accum[currentCode] = bpi[currentCode].rate_float;  
+            //accum becomes an array where each index corresponds to a bpi key, and each value is a rate 
+            //currentCode is the curreny key from bpi (USB, GBP or EUR)
+            accum[currentCode] = bpi[currentCode].rate_float;  
             
-    //         return accum;
-    //     }, {}); //Retrieves available keys for each bpi
+            return accum;
+        }, {}); //Retrieves available keys for each bpi
 
-    //     //Component Exclusive Data Asissgnment
-    //     setRates(bpiData); 
+        //Component Exclusive Data Asissgnment
+        setRates(bpiData); 
 
-    // }
+    }
 
-    // useEffect(() => {
-    //     fetchAPIData();
-    // }, []);
+    useEffect(() => {
+        fetchAPIData();
+    }, []);
 
     
 
