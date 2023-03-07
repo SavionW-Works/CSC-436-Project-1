@@ -48,21 +48,11 @@ function App() {
   useEffect(() => {
 
     fetchAPIData();
-    window.addEventListener("beforeunload", alert);
-    return () => {
-      window.removeEventListener("beforeunload", alert);
-    };
+   
 
   }, []);
 
 
-  const alert = (e) => {
-    if (allowRefetch == false) {
-      e.preventDefault();
-      e.returnValue = 'Please do Not Refresh the page';
-    }
-
-  };
 
 
 
