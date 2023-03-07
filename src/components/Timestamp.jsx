@@ -29,7 +29,7 @@ const Timestamp = () => {
         <div className="align-items center"> 
             <p className="fs-2"> Last Updated </p> 
             <p className="fs-5">{timestamp["updated"]}</p>  
-            <p className="fs-5">Local Time: {Date(localTime)}</p> 
+            <p className="fs-5"><span className="fw-bold"> Local Time: </span> {Date(localTime)}</p> 
         </div>
        
         

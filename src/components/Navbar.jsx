@@ -25,7 +25,7 @@ const NavBar = ({rates}) => {
                 {/* <!-- Keeping the navbar in a container helps with padding --> */}
                 <div className="container-fluid">
                     <h2>
-                        <a href="" className="navbar-brand display-1 fs-1">Crypto Conversion</a>
+                        <a href="" className="navbar-brand display-1 fs-1 fw-bold">Crypto Conversion</a>
                     </h2>
 
 

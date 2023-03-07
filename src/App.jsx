@@ -56,21 +56,21 @@ function App() {
   }, []);
 
 
-  const alert = (e) => { 
+  const alert = (e) => {
     if (allowRefetch == false) {
       e.preventDefault();
       e.returnValue = 'Please do Not Refresh the page';
     }
-      
+
   };
 
 
 
   const reFetch = () => {
     fetchAPIData();
-    setAllowRefetch(false); 
-    setRefetchTimer(setTimeout(() => { setAllowRefetch(true) }, 3000))  //5 minutes = 300000 ; 3 seconds = 3000 
-    
+    setAllowRefetch(false);
+    setRefetchTimer(setTimeout(() => { setAllowRefetch(true) }, 300000))  //5 minutes = 300000 ; 3 seconds = 3000 
+
   }
 
 
@@ -81,6 +81,26 @@ function App() {
           <div className="col">
             <NavBar rates={rates}></NavBar>
           </div>
+
+          <div className="py-3">
+            <Timestamp></Timestamp>
+
+            {/* fetchAPIData() still refreshes <Timestamp> for some reason, but only local timestamp is updated...?*/}
+            {allowRefetch &&
+
+              <button onClick={() => reFetch()} className="relative py-2 font-bold btn btn-primary rounded group">
+                <span className="relative"> Re-Fetch </span>
+              </button>
+            }
+
+            {/* Pending ReFetch */}
+            {!allowRefetch &&
+
+              <button className="relative py-2 font-bold btn btn-dark rounded group">
+                <span className="relative"> Pending... </span>
+              </button>}
+          </div>
+
         </div>
 
 
@@ -88,22 +108,7 @@ function App() {
 
       </body> {/* End of Body */}
 
-      <Timestamp></Timestamp>
 
-      {/* fetchAPIData() still refreshes <Timestamp> for some reason, but only local timestamp is updated...?*/}
-      {allowRefetch &&
-
-        <button onClick={() => reFetch()} className="relative py-2 font-bold btn btn-primary rounded group">
-          <span className="relative"> Re-Fetch </span>
-        </button>
-      }
-
-      {/* Pending ReFetch */}
-      {!allowRefetch &&
-
-        <button className="relative py-2 font-bold btn btn-dark rounded group">
-          <span className="relative"> Pending... </span>
-        </button>}
     </>
   )
 }

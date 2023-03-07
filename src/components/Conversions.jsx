@@ -8,9 +8,9 @@ const Conversions = ({ rates2 }) => { //Given slightly different name to avoid m
 
     const [sortType, setSortType] = useState("Ascending");  //The search value given by users  
 
-    const [selectedCurrency, setSelectedCurrency] = useState("");
+    const [selectedCurrency, setSelectedCurrency] = useState("USD");
 
-    const [selectedQuantity, setSelectedQuantity] = useState(0);
+    const [selectedQuantity, setSelectedQuantity] = useState(1);
 
 
     const currencyHandler = (e) => {
@@ -96,15 +96,15 @@ const Conversions = ({ rates2 }) => { //Given slightly different name to avoid m
                     <table>
                         <thead>
                             <tr>
-                                <th> Currency </th>
-                                <th> Bitcoins </th>
+                                <th className="fs-3"> Currency </th>
+                                <th className="fs-3"> Bitcoins </th>
                             </tr>
                         </thead>
 
                         <tbody>{
                             Object.keys(rates).map((curr) => {
 
-                                return <tr key={`${curr}`}>
+                                return <tr key={`${curr}`} className="fs-5">
                                     <td>1 {curr}</td>
                                     <td>{rates[curr]} BTC</td>
                                 </tr>
@@ -128,7 +128,7 @@ const Conversions = ({ rates2 }) => { //Given slightly different name to avoid m
             <div className="container">
 
                 <div className="col align-items-center justify-content-center">
-                    <label for="Currency Dropdown" className="px-3"> Currency: </label>
+                    <label for="Currency Dropdown" className="px-3 fs-3"> Currency: </label>
 
                     <select name="Currency Dropdown" onChange={currencyHandler} id="Currency Dropdown" >
                         {Object.keys(rates).map((curr) => {
@@ -136,17 +136,19 @@ const Conversions = ({ rates2 }) => { //Given slightly different name to avoid m
                         })}
                     </select>
 
-                    <label for="quantity" className="px-3">Quantity:</label>
+                    <label for="quantity" className="px-4 fs-3">Quantity:</label>
                     <input type="number" onChange={quantityHandler} value={selectedQuantity} name="quantity" min="1"></input>
 
+                    <span className="px-3">
+                        <button onClick={showExchange} className="relative py-2 font-bold btn btn-primary rounded group">
+                            <span className="relative"> Exchange </span>
+                        </button>
+                    </span>
+                    
 
-                    <button onClick={showExchange} className="relative py-2 font-bold btn btn-primary rounded group">
-                        <span className="relative"> Exchange </span>
-                    </button>
 
 
-
-                    {toggleExchange && <p> {rates[selectedCurrency] * selectedQuantity} BTC </p>}
+                    {toggleExchange && <p className="fs-3 pt-3"> {rates[selectedCurrency] * selectedQuantity} BTC </p>}
                 </div>
 
             </div>

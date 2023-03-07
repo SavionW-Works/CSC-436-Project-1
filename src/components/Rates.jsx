@@ -46,7 +46,10 @@ const Rates = ({rates}) => {
         {/* Put the following in switches  */}
         {Object.keys(rates).map((curr) => {
            return <div>
-            <p key={curr}> 1 {curr} to {rates[curr]} Bitcoin,  1 Bitcoin  is {1/rates[curr]} {curr} </p> 
+            <p className="fs-4" key={curr}> 
+            1 <span className="fw-bold" > {curr}  </span> is {rates[curr]} <span className="fw-bold" > Bitcoin</span>,  
+            1 <span className="fw-bold" > Bitcoin  </span>  is {1/rates[curr]} <span className="fw-bold" > {curr}  </span> 
+            </p> 
            </div>
            
         })} 
