@@ -1,40 +1,40 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 
 const Timestamp = () => {
-  const [timestamp, setTimestamp] = useState({}); //Entire time object
-  const [localTime, setLocalTime] = useState(Date()); //UTC time
+	const [timestamp, setTimestamp] = useState({}); //Entire time object
+	const [localTime, setLocalTime] = useState(Date()); //UTC time
 
-  const fetchAPIData = async () => {
-    const URL = "https://api.coindesk.com/v1/bpi/currentprice.json";
-    const {
-      data: { time },
-    } = await axios.get(URL); //Returns API promise
+	const fetchAPIData = async () => {
+		const URL = 'https://api.coindesk.com/v1/bpi/currentprice.json';
+		const {
+			data: { time },
+		} = await axios.get(URL); //Returns API promise
 
-    //Component Exclusive Data Asissgnment
-    setTimestamp(time); //Stores entire time object into timestamp
-    setLocalTime(Date.parse(timestamp["updated"]).toLocaleString());
-  };
-  useEffect(() => {
-    fetchAPIData();
-  }, []);
+		//Component Exclusive Data Asissgnment
+		setTimestamp(time); //Stores entire time object into timestamp
+		setLocalTime(Date.parse(timestamp['updated']).toLocaleString());
+	};
+	useEffect(() => {
+		fetchAPIData();
+	}, []);
 
-  return (
-    <>
-      <div className="align-items center">
-        <p className="fs-2" data-testid="title">
-          Last Updated
-        </p>
-        <p className="fs-5">{timestamp["updated"]}</p>
-        <p className="fs-5">
-          <span className="fw-bold" data-testid="local time">
-            Local Time:
-          </span>
-          {Date(localTime)}
-        </p>
-      </div>
-    </>
-  );
+	return (
+		<>
+			<div className="align-items center">
+				<p className="fs-2" data-testid="title">
+					Last Updated
+				</p>
+				<p className="fs-5">{timestamp['updated']}</p>
+				<p className="fs-5">
+					<span className="fw-bold" data-testid="local time">
+						Local Time:
+					</span>
+					{Date(localTime)}
+				</p>
+			</div>
+		</>
+	);
 };
 
 export default Timestamp;
