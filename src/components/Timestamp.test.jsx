@@ -11,7 +11,7 @@ describe('Timestamp is rendered successfully', () => {
 	test('Last Updated text is rendered', () => {
 		const content = screen.getByTestId('title');
 
-		expect(content).toHaveTextContent('Last Updated');
+		expect(content).toHaveTextContent('Last Updated'); //Last Updated is a header that should appear when NavBar renders
 	});
 
 	test('Local time text is rendered', () => {
